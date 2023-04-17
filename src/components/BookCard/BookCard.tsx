@@ -5,7 +5,12 @@ export const BookCard = ({ book }: any) => {
 
   return (
     <div className={styles.BookCard}>
-      <h3>{bookData.title}</h3>
+      <h2>{bookData.title}</h2>
+      <h3>{bookData.authors}</h3>
+      {/* extras section */}
+      <img src={bookData.imageLinks.smallThumbnail} alt="" />
+      <p>{bookData.subtitle}</p>
+      <p>{bookData.description}</p>
     </div>
   );
 };
