@@ -1,7 +1,11 @@
-export const BookCard = ({ data }: any) => {
+import styles from "../BookCard/BookCard.module.scss";
+
+export const BookCard = ({ book }: any) => {
+  const bookData = book.volumeInfo;
+
   return (
-    <>
-      <h3>{data.title}</h3>
-    </>
+    <div className={styles.BookCard}>
+      <h3>{bookData.title}</h3>
+    </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { BooksTable } from "./containers/BooksTable/BooksTable";
-import "./App.css";
+import styles from "./App.module.scss";
 
 const App = () => {
   const [books, setBooks] = useState([]);
@@ -20,7 +20,7 @@ const App = () => {
     wrapper();
   }, []);
 
-  return <div className="App">{<BooksTable books={books} />}</div>;
+  return <div className={styles.App}>{<BooksTable books={books} />}</div>;
 };
 
 export default App;
