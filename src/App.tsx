@@ -1,24 +1,22 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { BooksTable } from "./containers/BooksTable/BooksTable";
 import "./App.css";
 
 const App = () => {
-  const [books, setBooks] = useState([]);
+  const books: Array<Object> = [];
 
-  const getBooks = async () => {
+  const getBooks = async (arr: Array<Object>) => {
     const response = await fetch(
       "https://www.googleapis.com/books/v1/volumes?q=flowers"
     );
     const data = await response.json();
-    setBooks(data.itmes);
+    return arr.push(data.items);
+    // console.log(books);
   };
 
-  return (
-    <div className="App">
-      <p>{typeof books}</p>
-    </div>
-  );
+  getBooks(books);
+
+  return <div className="App">{<BooksTable books={books} />}</div>;
 };
 
 export default App;
