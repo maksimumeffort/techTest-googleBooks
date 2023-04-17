@@ -3,18 +3,22 @@ import { BooksTable } from "./containers/BooksTable/BooksTable";
 import "./App.css";
 
 const App = () => {
-  const books: Array<Object> = [];
+  const [books, setBooks] = useState([]);
 
-  const getBooks = async (arr: Array<Object>) => {
+  const getBooks = async () => {
     const response = await fetch(
       "https://www.googleapis.com/books/v1/volumes?q=flowers"
     );
-    const data = await response.json();
-    return arr.push(data.items);
-    // console.log(books);
+    return await response.json();
   };
 
-  getBooks(books);
+  useEffect(() => {
+    const wrapper = async () => {
+      const allBooks = await getBooks();
+      setBooks(allBooks.items);
+    };
+    wrapper();
+  }, []);
 
   return <div className="App">{<BooksTable books={books} />}</div>;
 };
