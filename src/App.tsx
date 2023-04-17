@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { BooksTable } from "./containers/BooksTable/BooksTable";
+import styles from "./App.module.scss";
 
 const App = () => {
   const [books, setBooks] = useState([]);
@@ -10,15 +9,18 @@ const App = () => {
     const response = await fetch(
       "https://www.googleapis.com/books/v1/volumes?q=flowers"
     );
-    const data = await response.json();
-    setBooks(data.itmes);
+    return await response.json();
   };
 
-  return (
-    <div className="App">
-      <p>{typeof books}</p>
-    </div>
-  );
+  useEffect(() => {
+    const wrapper = async () => {
+      const allBooks = await getBooks();
+      setBooks(allBooks.items);
+    };
+    wrapper();
+  }, []);
+
+  return <div className={styles.App}>{<BooksTable books={books} />}</div>;
 };
 
 export default App;
