@@ -9,8 +9,11 @@ export const BookCard = ({ book }: any) => {
       <h3>{bookData.authors}</h3>
       {/* extras section */}
       <img src={bookData.imageLinks.smallThumbnail} alt="" />
-      <p>{bookData.subtitle}</p>
-      <p>{bookData.description}</p>
+      <button>More</button>
+      <div className={styles.BookCardMore}>
+        <p>{bookData.subtitle}</p>
+        <p>{bookData.description}</p>
+      </div>
     </div>
   );
 };
